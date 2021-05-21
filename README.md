@@ -1,5 +1,9 @@
+
+Hello everyone! 
+This is my first project within npm, I hope it will be of great use to the community.
 The need within several projects in which I have worked has been the kick of this project.
 Basic operations that we use daily in web development.
+On the examples everything is done with ID, but it works with queryselector and queryselectorall
 
 ## How does it work?
 ```sh
@@ -25,8 +29,40 @@ var js_ui = new JSUTIL()
 js_ui.removeClass(document.getElementById('bar'),'foo')
 ```
 
-#### Remove Class
+#### Toggle Class
 ```sh
 var js_ui = new JSUTIL()
 js_ui.toggleClass(document.getElementById('bar'),'foo')
 ```
+
+####  Add Style
+```sh
+var js_ui = new JSUTIL()
+js_ui.addStyle(document.getElementById('add-style-trigger'),'background-color','orange');
+js_ui.addStyle(document.getElementById('add-style-trigger'),'padding','10px');
+```
+
+####  Hide Element
+```sh
+var js_ui = new JSUTIL()
+document.getElementById('hide-trigger').addEventListener('click', (e)=>{
+    e.preventDefault()
+    js_ui.hide(document.getElementById('hide-trigger'));
+});
+```
+
+####  Show Element
+```sh
+var js_ui = new JSUTIL()
+document.getElementById('show-trigger').addEventListener('click', (e)=>{
+    e.preventDefault()
+    js_ui.show(document.getElementById('content-to-show'));
+});
+```
+
+####  Get Browser
+```sh
+var js_ui = new JSUTIL()
+js_ui.getBrowser()
+```
+[Mi Personal Site](http://arsen.com.uy/)
