@@ -1,6 +1,6 @@
 {
   "name": "@andresclua/jsutil",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "",
   "scripts": {
@@ -23,5 +23,12 @@
   },
   "dependencies": {
     "@babel/core": "^7.14.3"
-  }
+  },
+  "keywords": [
+    "className",
+    "element",
+    "DOM",
+    "useragent",
+    "browser"
+  ]
 }
