@@ -69,4 +69,4 @@ js_ui.getBrowser()
 
 
 
-[Mi Personal Site](http://arsen.com.uy/)
+[My Personal Site](http://arsen.com.uy/)
