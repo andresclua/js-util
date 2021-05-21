@@ -1,4 +1,4 @@
-class js_helper{
+class JSUTIL{
     
     _getElements(id) {
         if (typeof id == "object") {
@@ -151,4 +151,4 @@ class js_helper{
 
 
 }
-export default TF_UI;
+export default JSUTIL;
