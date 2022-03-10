@@ -61,9 +61,28 @@ document.getElementById('show-trigger').addEventListener('click', (e)=>{
 ```
 
 ####  Get Browser
+Returns Boolean
+Available options:
+ - chrome
+ - safari
+ - firefox
+ - ie
+ - edge
 ```sh
 var js_ui = new JSUTIL()
-js_ui.getBrowser()
+js_ui.getBrowser('chrome')
+```
+
+
+####  Get Device Type
+Returns Boolean
+Available options:
+ - touch
+ - android
+ - ios
+```sh
+var js_ui = new JSUTIL()
+js_ui.getTypeDevice('touch')
 ```
 ![awesome](https://media.giphy.com/media/LeikbswJKXOMM/giphy.gif)
 

@@ -6,7 +6,7 @@ class Page{
     }
     init(){ 
         var jsutil = new JSUTIL()
-
+        
         /*
             Add Class
         */
@@ -49,8 +49,19 @@ class Page{
         /*
             get Browser
         */
-        document.getElementById("show-browser").innerHTML = jsutil.getBrowser();
+        var browsers = ['chrome','safari','firefox','ie','edge']
+        browsers.forEach(element => {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(`is this browser ${element}? ${jsutil.getBrowser(element)} `))
+            document.getElementById('browserList').appendChild(li);
+        });
 
+        var devices = ['touch','android','ios']
+        devices.forEach(element => {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(`is this ${element}? ${jsutil.getTypeDevice(element)} `))
+            document.getElementById('detectdevice').appendChild(li);
+        });
     }
 }
 export default Page;
