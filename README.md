@@ -61,13 +61,16 @@ document.getElementById('show-trigger').addEventListener('click', (e)=>{
 ```
 
 ####  Get Browser
-Returns Boolean
 Available options:
  - chrome
  - safari
  - firefox
  - ie
  - edge
+
+Returns Boolean
+
+Example: 
 ```sh
 var js_ui = new JSUTIL()
 js_ui.getBrowser('chrome')
@@ -75,17 +78,19 @@ js_ui.getBrowser('chrome')
 
 
 ####  Get Device Type
-Returns Boolean
+
 Available options:
  - touch
  - android
  - ios
+
+Returns Boolean
+
+Example: 
 ```sh
 var js_ui = new JSUTIL()
 js_ui.getTypeDevice('touch')
 ```
 ![awesome](https://media.giphy.com/media/LeikbswJKXOMM/giphy.gif)
 
-
-
-[My Personal Site](http://arsen.com.uy/)
+[Github Profile](https://github.com/andresclua/)
