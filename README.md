@@ -19,44 +19,44 @@ and voila, it is ready to use!
 
 #### Add Class
 ```sh
-var js_ui = new JSUTIL()
-js_ui.addClass(document.getElementById('bar'),'foo')
+var JSUTIL = new JSUTIL()
+JSUTIL.addClass(document.getElementById('bar'),'foo')
 ```
 
 #### Remove Class
 ```sh
-var js_ui = new JSUTIL()
-js_ui.removeClass(document.getElementById('bar'),'foo')
+var JSUTIL = new JSUTIL()
+JSUTIL.removeClass(document.getElementById('bar'),'foo')
 ```
 
 #### Toggle Class
 ```sh
-var js_ui = new JSUTIL()
-js_ui.toggleClass(document.getElementById('bar'),'foo')
+var JSUTIL = new JSUTIL()
+JSUTIL.toggleClass(document.getElementById('bar'),'foo')
 ```
 
 ####  Add Style
 ```sh
-var js_ui = new JSUTIL()
-js_ui.addStyle(document.getElementById('add-style-trigger'),'background-color','orange');
-js_ui.addStyle(document.getElementById('add-style-trigger'),'padding','10px');
+var JSUTIL = new JSUTIL()
+JSUTIL.addStyle(document.getElementById('add-style-trigger'),'background-color','orange');
+JSUTIL.addStyle(document.getElementById('add-style-trigger'),'padding','10px');
 ```
 
 ####  Hide Element
 ```sh
-var js_ui = new JSUTIL()
+var JSUTIL = new JSUTIL()
 document.getElementById('hide-trigger').addEventListener('click', (e)=>{
     e.preventDefault()
-    js_ui.hide(document.getElementById('hide-trigger'));
+    JSUTIL.hide(document.getElementById('hide-trigger'));
 });
 ```
 
 ####  Show Element
 ```sh
-var js_ui = new JSUTIL()
+var JSUTIL = new JSUTIL()
 document.getElementById('show-trigger').addEventListener('click', (e)=>{
     e.preventDefault()
-    js_ui.show(document.getElementById('content-to-show'));
+    JSUTIL.show(document.getElementById('content-to-show'));
 });
 ```
 
@@ -72,8 +72,8 @@ Returns Boolean
 
 Example: 
 ```sh
-var js_ui = new JSUTIL()
-js_ui.getBrowser('chrome')
+var JSUTIL = new JSUTIL()
+JSUTIL  .getBrowser('chrome')
 ```
 
 
@@ -88,8 +88,39 @@ Returns Boolean
 
 Example: 
 ```sh
-var js_ui = new JSUTIL()
-js_ui.getTypeDevice('touch')
+var JSUTIL = new JSUTIL()
+JSUTIL.getTypeDevice('touch')
+```
+
+####  For Nuxt Projects
+```sh
+npm install @andresclua/jsutil
+```
+```sh
+  plugins: [
+    { src: "~/plugins/jsutil.js", ssr: false },
+  ],
+```
+```sh
+import JSUTIL from '@andresclua/jsutil/src/js_helper';
+export default ({ app },inject) => {
+    inject('JSUTIL', () => new JSUTIL() );
+};
+```
+```sh
+<template>
+    <p ref="test">this is a test</p>
+</template>
+<script>
+export default {
+    mounted() {
+        if (process.client) {
+                this.$JSUTIL().addClass(this.$refs.test,'foo');
+                console.log( 'is chrome?',this.$JSUTIL().getBrowser('chrome') );
+        }
+    },
+}
+</script>
 ```
 ![awesome](https://media.giphy.com/media/LeikbswJKXOMM/giphy.gif)
 
