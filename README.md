@@ -92,7 +92,7 @@ var JSUTIL = new JSUTIL()
 JSUTIL.getTypeDevice('touch')
 ```
 
-####  For Nuxt Projects
+#  For Nuxt Projects
 ```sh
 npm install @andresclua/jsutil
 ```
