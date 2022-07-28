@@ -73,7 +73,7 @@ Returns Boolean
 Example: 
 ```sh
 var JSUTIL = new JSUTIL()
-JSUTIL  .getBrowser('chrome')
+JSUTIL.getBrowser('chrome')
 ```
 
 
