@@ -12,7 +12,7 @@ npm install @andresclua/jsutil
 
 ## include the library in file
 ```sh
-import JSUTIL from '@andresclua/jsutil/src/js_helper';
+import JSUTIL from '@andresclua/jsutil';
 ```
 and voila, it is ready to use!
 # Example
@@ -102,7 +102,7 @@ npm install @andresclua/jsutil
   ],
 ```
 ```sh
-import JSUTIL from '@andresclua/jsutil/src/js_helper';
+import JSUTIL from '@andresclua/jsutil';
 export default ({ app },inject) => {
     inject('JSUTIL', () => new JSUTIL() );
 };
