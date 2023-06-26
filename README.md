@@ -60,6 +60,18 @@ document.getElementById('show-trigger').addEventListener('click', (e)=>{
 });
 ```
 
+#### Matches
+```sh
+var JSUTIL = new JSUTIL()
+// class could be defined as string or array
+// selector should be querySelector or ID
+// You can also use it with custom attributes
+jsutil.matches(document.querySelector('.test'), ['lorem','ipsum']))
+jsutil.matches(document.getElementById("customElement"), ["custom-value", "other-value"], 'data-custom-attribute')
+
+
+```
+
 ####  Get Browser
 Available options:
  - chrome
