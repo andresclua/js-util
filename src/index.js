@@ -62,6 +62,23 @@ class Page{
             li.appendChild(document.createTextNode(`is this ${element}? ${jsutil.getTypeDevice(element)} `))
             document.getElementById('detectdevice').appendChild(li);
         });
+
+       
+      
+        if (jsutil.matches(document.querySelector('.test'), ['asd','toto'])) {
+          console.log("element has class highlight");
+        } else{
+            console.log('it doesnt')
+        }
+
+      
+        if (jsutil.matches(document.getElementById("customElement"), ["custom-value", "other-value"], 'data-custom-attribute')) {
+            console.log("Element matches the specified custom attribute values");
+          } else {
+            console.log("Element does not match the specified custom attribute values");
+        }
+
+
     }
 }
 export default Page;

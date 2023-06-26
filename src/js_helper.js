@@ -183,7 +183,40 @@ class JSUTIL{
         default:
             return null;
     }
-}
+  }
+
+  matches(element, identifier, attribute = 'class') {
+    if (!element) {
+      return false;
+    }
+
+    if (Array.isArray(identifier)) {
+      if (attribute === 'class') {
+        const classList = element.classList;
+        if (classList) {
+          const classListArray = Array.from(classList);
+          return identifier.some(className => classListArray.includes(className));
+        }
+      } else {
+        const attributeValue = element.getAttribute(attribute);
+        return identifier.some(value => value === attributeValue);
+      }
+    } else {
+      if (attribute === 'class') {
+        const classList = element.classList;
+        if (classList) {
+          const classListString = Array.from(classList).join(' ');
+          const regex = new RegExp(`\\b${identifier}\\b`);
+          return classListString.match(regex) !== null;
+        }
+      } else {
+        const attributeValue = element.getAttribute(attribute);
+        return attributeValue === identifier;
+      }
+    }
+
+    return false;
+  }
 
    
 
