@@ -244,6 +244,28 @@ class JSUTIL{
     return false;
   }
 
+  sortArray(array, type = "alphabetical") {
+    if (type === "alphabetical") {
+      return array.sort((a, b) => {
+        const elementA = a.toLowerCase();
+        const elementB = b.toLowerCase();
+  
+        if (elementA < elementB) {
+          return -1;
+        } else if (elementA > elementB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    } else if (type === "number") {
+      return array.sort((a, b) => a - b);
+    } else {
+      console.error("Invalid sorting type. Please choose 'alphabetical' or 'number'.");
+      return array;
+    }
+  }
+
    
 
 
