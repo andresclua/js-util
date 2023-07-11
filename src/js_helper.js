@@ -185,6 +185,32 @@ class JSUTIL{
     }
   }
 
+  filterHTML(id, sel, filter) {
+    
+    var a, b, c, i, ii, iii, hit;
+    a = this._getElements(id);
+    for (i = 0; i < a.length; i++) {
+      b = a[i].querySelectorAll(sel);
+      for (ii = 0; ii < b.length; ii++) {
+        hit = 0;
+        if (b[ii].innerText.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+          hit = 1;
+        }
+        c = b[ii].getElementsByTagName("*");
+        for (iii = 0; iii < c.length; iii++) {
+          if (c[iii].innerText.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+            hit = 1;
+          }
+        }
+        if (hit == 1) {
+          this.addStyle(b[ii],'display','block');
+        } else {
+          this.addStyle(b[ii],'display','none');
+        }
+      }
+    }
+  };
+
   matches(element, identifier, attribute = 'class') {
     if (!element) {
       return false;

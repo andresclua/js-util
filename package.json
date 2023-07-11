@@ -4,7 +4,7 @@
   "description": "DOM",
   "main": "",
   "scripts": {
-    "webpack": "webpack --watch"
+    "webpack": "webpack --watch --mode=production"
   },
   "repository": {
     "type": "git",

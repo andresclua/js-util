@@ -72,6 +72,15 @@ jsutil.matches(document.getElementById("customElement"), ["custom-value", "other
 
 ```
 
+#### Filter
+```sh
+var JSUTIL = new JSUTIL()
+document.getElementById('triggerfilter').addEventListener('input', (event)=> {
+    JSUTIL.filterHTML(document.getElementById('list'),'li',event.target.value);
+});
+
+```
+
 ####  Get Browser
 Available options:
  - chrome

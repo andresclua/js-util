@@ -78,6 +78,9 @@ class Page{
             console.log("Element does not match the specified custom attribute values");
         }
 
+        document.getElementById('triggerfilter').addEventListener('input', (event)=> {
+            jsutil.filterHTML(document.getElementById('list'),'li',event.target.value);
+        });
 
     }
 }
