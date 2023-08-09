@@ -266,6 +266,32 @@ class JSUTIL{
     }
   }
 
+  stringToBoolean(input) {
+    const lowerInput = input.toLowerCase(); // Convert input to lowercase
+
+    if (lowerInput === 'true' || lowerInput === '1') {
+        return true;
+    } else if (lowerInput === 'false' || lowerInput === '0') {
+        return false;
+    } else {
+        throw new Error('Invalid input. Only "true", "false", "1", or "0" are allowed.');
+    }
+  }
+
+
+  setAttr(element, attributeName, attributeValue) {
+    if (element && attributeName) {
+        element.setAttribute(attributeName, attributeValue);
+    }
+  }
+
+  getAttr(element, attributeName) {
+      if (element && attributeName) {
+          return element.getAttribute(attributeName);
+      }
+      return null; // Return null if element or attributeName is not provided
+  }
+
    
 
 

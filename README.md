@@ -81,6 +81,31 @@ document.getElementById('triggerfilter').addEventListener('input', (event)=> {
 
 ```
 
+### StringToBoolean
+```sh
+console.log(JSUTIL.stringToBoolean('True'));  // Output: true
+console.log(JSUTIL.stringToBoolean('false')); // Output: false
+console.log(JSUTIL.stringToBoolean('1'));     // Output: true
+console.log(JSUTIL.stringToBoolean('0'));     // Output: false
+```
+
+
+
+### setAttr & setAttr
+```sh
+const name = JSUTIL.getAttr(myElement, 'data-name');
+const age = JSUTIL.getAttr(myElement, 'data-age');
+```
+
+
+
+
+
+
+
+
+
+
 ####  Get Browser
 Available options:
  - chrome
