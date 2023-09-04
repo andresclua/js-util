@@ -94,14 +94,36 @@ console.log(JSUTIL.stringToBoolean('0'));     // Output: false
 ### setAttr & setAttr
 ```sh
 const name = JSUTIL.getAttr(myElement, 'data-name');
-const age = JSUTIL.getAttr(myElement, 'data-age');
+const age = JSUTIL.setAttr(myElement, 'data-age');
 ```
 
+### visibleOnLoad
+
+function is designed to check whether a specified HTML element is visible in the viewport when a page loads. It provides the flexibility to customize the visibility criteria by accepting an `options` object with parameters.
+
+#### Parameters
+
+- `options` (Object): An object containing the following properties:
+  - `element` (HTMLElement): The HTML element to check for visibility within the viewport.
+  - `additionalPixels` (number, optional, default: 20): The number of additional pixels to consider when calculating visibility. This allows you to expand or contract the visibility threshold.
+
+#### Returns
+
+- `true` (boolean): Indicates that the element is not visible in the viewport when the page loads, considering the specified `additionalPixels` value.
+
+- `false` (boolean): Indicates that the element is visible in the viewport when the page loads, considering the specified `additionalPixels` value.
 
 
+```
+const detectdevice = jsutil.isElementVisibleOnLoad({ element: document.getElementById('detectdevice'), additionalPixels: 2330 });;
 
-
-
+if (detectdevice) {
+    console.log(detectdevice)
+console.log('detectdevice is  visible on load.');
+} else {
+console.log('detectdevice is not visible on load.');
+}
+```
 
 
 

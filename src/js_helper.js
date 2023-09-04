@@ -292,8 +292,29 @@ class JSUTIL{
       return null; // Return null if element or attributeName is not provided
   }
 
+  isElementVisibleOnLoad(options) {
+    const { element, additionalPixels = 20 } = options;
+
+    if (!element) {
+      console.log('Element does not exist.');
+      // Element doesn't exist, return true to indicate it's not visible.
+      return true;
+    }
+
+    const elementRect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+    const modifiedThreshold = windowHeight + additionalPixels;
+
+    if (elementRect.bottom < -additionalPixels || elementRect.top > modifiedThreshold) {
+      return false;
+    }
+    return true;
+  }
+
    
 
 
 }
 export default JSUTIL;
+

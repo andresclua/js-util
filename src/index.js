@@ -1,4 +1,4 @@
-import JSUTIL from './js_helper';
+import JSUTIL,{loadOnDemand} from './js_helper';
 
 class Page{
     constructor(){
@@ -81,6 +81,24 @@ class Page{
         document.getElementById('triggerfilter').addEventListener('input', (event)=> {
             jsutil.filterHTML(document.getElementById('list'),'li',event.target.value);
         });
+
+
+        const isvisibleaddclassTrigger = jsutil.isElementVisibleOnLoad({ element: document.getElementById('add-class-trigger'), additionalPixels: 30 });;
+
+        if (isvisibleaddclassTrigger) {
+        console.log('add-class-trigger is  visible on load.');
+        } else {
+        console.log('add-class-trigger is not visible on load.');
+        }
+
+        const detectdevice = jsutil.isElementVisibleOnLoad({ element: document.getElementById('detectdevice'), additionalPixels: 2330 });;
+
+        if (detectdevice) {
+            console.log('detectdevice is  visible on load.');
+        } else {
+            console.log('detectdevice is not visible on load.');
+        }
+        console.log('Distance from top to element:', resultado.distanceFromTop, 'px');
 
     }
 }
