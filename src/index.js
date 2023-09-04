@@ -98,7 +98,6 @@ class Page{
         } else {
             console.log('detectdevice is not visible on load.');
         }
-        console.log('Distance from top to element:', resultado.distanceFromTop, 'px');
 
     }
 }
