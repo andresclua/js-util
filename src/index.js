@@ -91,7 +91,7 @@ class Page{
         console.log('add-class-trigger is not visible on load.');
         }
 
-        const detectdevice = jsutil.isElementVisibleOnLoad({ element: document.getElementById('detectdevice'), additionalPixels: 2330 });;
+        const detectdevice = jsutil.isElementVisibleOnLoad({ element: document.getElementById('detectdevice'), additionalPixels: 120 });;
 
         if (detectdevice) {
             console.log('detectdevice is  visible on load.');
