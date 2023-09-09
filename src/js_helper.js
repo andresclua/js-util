@@ -1,3 +1,5 @@
+import { tyt,loadAndUseScript,loadAndUseStyle } from "./promises/index";
+import { isBrowser,isDevice } from "./utilities/index";
 class JSUTIL{
     
     _getElements(id) {
@@ -148,173 +150,146 @@ class JSUTIL{
     };
 
 
-   // BROWSER DETECTION
-  getBrowser(browser) {
-      switch (browser) {
-          // CHROME 1+
-          case 'chrome':
-              return navigator.userAgent.indexOf("Chrome") != -1 && !navigator.userAgent.match(/edg/i) || navigator.userAgent.indexOf('CriOS') >= 0;
-          // SAFARI 3.0+
-          case 'safari':
-              return /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && !(navigator.userAgent.indexOf('CriOS') >= 0);
-          // FIREFOX 1.0+
-          case 'firefox':
-              return typeof InstallTrigger !== 'undefined';
-          // INTERNET EXPLORER 6-11
-          case 'ie':
-              return /*@cc_on!@*/false || !!document.documentMode;
-          // EDGE 20+
-          case 'edge':
-              return (navigator.userAgent.match(/edg/i) || navigator.userAgent.indexOf("Edge/") != -1) ? true : false;
-          default:
-              return null;
-      }
-  }
-
-  getTypeDevice(system) {
-    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    switch (system) {
-        case 'touch':
-            return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
-        case 'android':
-            return /android/i.test(userAgent);
-        case 'ios':
-            return typeof navigator.standalone === 'boolean';
-        default:
-            return null;
-    }
-  }
-
-  filterHTML(id, sel, filter) {
-    
-    var a, b, c, i, ii, iii, hit;
-    a = this._getElements(id);
-    for (i = 0; i < a.length; i++) {
-      b = a[i].querySelectorAll(sel);
-      for (ii = 0; ii < b.length; ii++) {
-        hit = 0;
-        if (b[ii].innerText.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
-          hit = 1;
-        }
-        c = b[ii].getElementsByTagName("*");
-        for (iii = 0; iii < c.length; iii++) {
-          if (c[iii].innerText.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+    filterHTML(id, sel, filter) {
+      
+      var a, b, c, i, ii, iii, hit;
+      a = this._getElements(id);
+      for (i = 0; i < a.length; i++) {
+        b = a[i].querySelectorAll(sel);
+        for (ii = 0; ii < b.length; ii++) {
+          hit = 0;
+          if (b[ii].innerText.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
             hit = 1;
           }
-        }
-        if (hit == 1) {
-          this.addStyle(b[ii],'display','block');
-        } else {
-          this.addStyle(b[ii],'display','none');
+          c = b[ii].getElementsByTagName("*");
+          for (iii = 0; iii < c.length; iii++) {
+            if (c[iii].innerText.toUpperCase().indexOf(filter.toUpperCase()) > -1) {
+              hit = 1;
+            }
+          }
+          if (hit == 1) {
+            this.addStyle(b[ii],'display','block');
+          } else {
+            this.addStyle(b[ii],'display','none');
+          }
         }
       }
-    }
-  };
+    };
 
-  matches(element, identifier, attribute = 'class') {
-    if (!element) {
+    matches(element, identifier, attribute = 'class') {
+      if (!element) {
+        return false;
+      }
+
+      if (Array.isArray(identifier)) {
+        if (attribute === 'class') {
+          const classList = element.classList;
+          if (classList) {
+            const classListArray = Array.from(classList);
+            return identifier.some(className => classListArray.includes(className));
+          }
+        } else {
+          const attributeValue = element.getAttribute(attribute);
+          return identifier.some(value => value === attributeValue);
+        }
+      } else {
+        if (attribute === 'class') {
+          const classList = element.classList;
+          if (classList) {
+            const classListString = Array.from(classList).join(' ');
+            const regex = new RegExp(`\\b${identifier}\\b`);
+            return classListString.match(regex) !== null;
+          }
+        } else {
+          const attributeValue = element.getAttribute(attribute);
+          return attributeValue === identifier;
+        }
+      }
+
       return false;
     }
 
-    if (Array.isArray(identifier)) {
-      if (attribute === 'class') {
-        const classList = element.classList;
-        if (classList) {
-          const classListArray = Array.from(classList);
-          return identifier.some(className => classListArray.includes(className));
-        }
+    sortArray(array, type = "alphabetical") {
+      if (type === "alphabetical") {
+        return array.sort((a, b) => {
+          const elementA = a.toLowerCase();
+          const elementB = b.toLowerCase();
+    
+          if (elementA < elementB) {
+            return -1;
+          } else if (elementA > elementB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+      } else if (type === "number") {
+        return array.sort((a, b) => a - b);
       } else {
-        const attributeValue = element.getAttribute(attribute);
-        return identifier.some(value => value === attributeValue);
-      }
-    } else {
-      if (attribute === 'class') {
-        const classList = element.classList;
-        if (classList) {
-          const classListString = Array.from(classList).join(' ');
-          const regex = new RegExp(`\\b${identifier}\\b`);
-          return classListString.match(regex) !== null;
-        }
-      } else {
-        const attributeValue = element.getAttribute(attribute);
-        return attributeValue === identifier;
+        console.error("Invalid sorting type. Please choose 'alphabetical' or 'number'.");
+        return array;
       }
     }
 
-    return false;
-  }
-
-  sortArray(array, type = "alphabetical") {
-    if (type === "alphabetical") {
-      return array.sort((a, b) => {
-        const elementA = a.toLowerCase();
-        const elementB = b.toLowerCase();
-  
-        if (elementA < elementB) {
-          return -1;
-        } else if (elementA > elementB) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-    } else if (type === "number") {
-      return array.sort((a, b) => a - b);
-    } else {
-      console.error("Invalid sorting type. Please choose 'alphabetical' or 'number'.");
-      return array;
+    stringToNumber(str) {
+      const parsedNumber = parseFloat(str);
+      if (!isNaN(parsedNumber)) {
+        return parsedNumber;
+      } else {
+        throw new Error('Invalid input. Cannot convert to a number.');
+      }
     }
-  }
 
-  stringToBoolean(input) {
-    const lowerInput = input.toLowerCase(); // Convert input to lowercase
+    stringToBoolean(input) {
+      const lowerInput = input.toLowerCase(); // Convert input to lowercase
 
-    if (lowerInput === 'true' || lowerInput === '1') {
-        return true;
-    } else if (lowerInput === 'false' || lowerInput === '0') {
-        return false;
-    } else {
-        throw new Error('Invalid input. Only "true", "false", "1", or "0" are allowed.');
+      if (lowerInput === 'true' || lowerInput === '1') {
+          return true;
+      } else if (lowerInput === 'false' || lowerInput === '0') {
+          return false;
+      } else {
+          throw new Error('Invalid input. Only "true", "false", "1", or "0" are allowed.');
+      }
     }
-  }
 
 
-  setAttr(element, attributeName, attributeValue) {
-    if (element && attributeName) {
-        element.setAttribute(attributeName, attributeValue);
-    }
-  }
-
-  getAttr(element, attributeName) {
+    setAttr(element, attributeName, attributeValue) {
       if (element && attributeName) {
-          return element.getAttribute(attributeName);
+          element.setAttribute(attributeName, attributeValue);
       }
-      return null; // Return null if element or attributeName is not provided
-  }
+    }
 
-  isElementVisibleOnLoad(options) {
-    const { element, additionalPixels = 20 } = options;
+    getAttr(element, attributeName) {
+        if (element && attributeName) {
+            return element.getAttribute(attributeName);
+        }
+        return null; // Return null if element or attributeName is not provided
+    }
 
-    if (!element) {
-      console.log('Element does not exist.');
-      // Element doesn't exist, return true to indicate it's not visible.
+    isElementVisibleOnLoad(options) {
+      const { element, additionalPixels = 20 } = options;
+
+      if (!element) {
+        console.log('Element does not exist.');
+        // Element doesn't exist, return true to indicate it's not visible.
+        return true;
+      }
+
+      const elementRect = element.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      const modifiedThreshold = windowHeight + additionalPixels;
+
+      if (elementRect.bottom < -additionalPixels || elementRect.top > modifiedThreshold) {
+        return false;
+      }
       return true;
     }
 
-    const elementRect = element.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-
-    const modifiedThreshold = windowHeight + additionalPixels;
-
-    if (elementRect.bottom < -additionalPixels || elementRect.top > modifiedThreshold) {
-      return false;
-    }
-    return true;
-  }
-
-   
-
-
 }
+ 
+
 export default JSUTIL;
+export {tyt, loadAndUseScript,loadAndUseStyle }; 
+export {isBrowser,isDevice};
 

@@ -1,9 +1,11 @@
+# Introducing Js Utils v3!
 
-Hello everyone! 
-This is my first project within npm, I hope it will be of great use to the community.
-The need within several projects in which I have worked has been the kick of this project.
-Basic operations that we use daily in web development.
-On the examples everything is done with ID, but it works with queryselector and queryselectorall
+I'm thrilled to present Js Utils v3, born out of real-world experiences across various web development projects. You know those basic tasks we tackle day in and day out? That's precisely what this npm package is all about—making your web dev life easier.
+
+While the examples provided here utilize HTML elements by their IDs, please note that the functionalities offered in this project can also be employed with querySelector and querySelectorAll. Additionally, it's essential to emphasize that this project allows for flexibility and adaptation, empowering users to refactor and customize its functionalities based on their specific use cases and needs.
+
+Cheers to simpler web development with process with Js Utils!
+
 
 ## How does it work?
 ```sh
@@ -14,7 +16,8 @@ npm install @andresclua/jsutil
 ```sh
 import JSUTIL from '@andresclua/jsutil';
 ```
-and voila, it is ready to use!
+
+*Note: Certain functions have been relocated outside the main class to accommodate scenarios where they may be the sole operation required.*
 # Example
 
 #### Add Class
@@ -68,8 +71,6 @@ var JSUTIL = new JSUTIL()
 // You can also use it with custom attributes
 jsutil.matches(document.querySelector('.test'), ['lorem','ipsum']))
 jsutil.matches(document.getElementById("customElement"), ["custom-value", "other-value"], 'data-custom-attribute')
-
-
 ```
 
 #### Filter
@@ -78,7 +79,6 @@ var JSUTIL = new JSUTIL()
 document.getElementById('triggerfilter').addEventListener('input', (event)=> {
     JSUTIL.filterHTML(document.getElementById('list'),'li',event.target.value);
 });
-
 ```
 
 ### StringToBoolean
@@ -91,7 +91,7 @@ console.log(JSUTIL.stringToBoolean('0'));     // Output: false
 
 
 
-### setAttr & setAttr
+### setAttr & getAttr
 ```sh
 const name = JSUTIL.getAttr(myElement, 'data-name');
 const age = JSUTIL.setAttr(myElement, 'data-age');
@@ -101,13 +101,13 @@ const age = JSUTIL.setAttr(myElement, 'data-age');
 
 function is designed to check whether a specified HTML element is visible in the viewport when a page loads. It provides the flexibility to customize the visibility criteria by accepting an `options` object with parameters.
 
-#### Parameters
+###### Parameters
 
 - `options` (Object): An object containing the following properties:
   - `element` (HTMLElement): The HTML element to check for visibility within the viewport.
   - `additionalPixels` (number, optional, default: 20): The number of additional pixels to consider when calculating visibility. This allows you to expand or contract the visibility threshold.
 
-#### Returns
+###### Returns
 
 - `true` (boolean): Indicates that the element is not visible in the viewport when the page loads, considering the specified `additionalPixels` value.
 
@@ -116,7 +116,6 @@ function is designed to check whether a specified HTML element is visible in the
 
 ```
 const detectdevice = jsutil.isElementVisibleOnLoad({ element: document.getElementById('detectdevice'), additionalPixels: 2330 });;
-
 if (detectdevice) {
     console.log(detectdevice)
 console.log('detectdevice is  visible on load.');
@@ -126,39 +125,96 @@ console.log('detectdevice is not visible on load.');
 ```
 
 
-
-
-####  Get Browser
+## Aditional Functions
+```
+import {nameoffunction} from  @andresclua/jsutil
+```
+### IsBrowser
+```
+console.log(isBrowser('chrome')) // will return a boolean
+```
 Available options:
- - chrome
- - safari
- - firefox
- - ie
- - edge
+- chrome
+- safari
+- firefox
+- ie
+- edge
 
-Returns Boolean
+### isDevice
+```
+console.log(isDevice('touch')) // will return a boolean
+```
+Available options:
+- touch
+- android
+- ios
 
-Example: 
-```sh
-var JSUTIL = new JSUTIL()
-JSUTIL.getBrowser('chrome')
+### Take your Time (promise)
+The **tyt** function is a utility that allows you to introduce a delay or pause in your JavaScript code. It's particularly useful in scenarios where you want to control the timing of certain operations, such as asynchronous calls, animations, or other timed tasks.
+
+##### Async Await
+```
+import {tyt} from  @andresclua/jsutil
+async function asyncTYT() {
+  try {
+    await tyt(500);
+    console.log('Async Function: End');
+  } catch (error) {
+    console.error('Async Function: Error:', error.message);
+  }
+}
+asyncTYT();
+```
+##### Promise Then
+```
+import {tyt} from  @andresclua/jsutil
+async function asyncTYT() {
+  try {
+    await tyt(500);
+    console.log('Async Function: End');
+  } catch (error) {
+    console.error('Async Function: Error:', error.message);
+  }
+}
+asyncTYT();
 ```
 
+### LoadAndUseScript (Promise)
+Asynchronous function to load and apply a stylesheet dynamically.
 
-####  Get Device Type
-
-Available options:
- - touch
- - android
- - ios
-
-Returns Boolean
-
-Example: 
-```sh
-var JSUTIL = new JSUTIL()
-JSUTIL.getTypeDevice('touch')
+##### Async Await
 ```
+import {LoadAndUseScript} from  @andresclua/jsutil
+async function asyncExampleStyle() {
+  try {
+    await loadAndUseStyle({
+      href: 'https://example.com/styles.css',
+      media: 'screen'
+    });
+    console.log('Async Function: End');
+  } catch (error) {
+    console.error('Async Function: Error loading stylesheet:', error.message);
+  }
+}
+asyncExampleStyle();
+ ```
+ 
+### LoadAndUseStyle (Promise)
+Asynchronous function to dynamically load a Styles and execute it.
+```
+async function asyncloadAndUseStyle() {
+  try {
+    await loadAndUseStyle({
+      href: 'https://example.com/styles.css',
+      media: 'screen'
+    });
+    console.log('Async Function: End');
+  } catch (error) {
+    console.error('Async Function: Error loading stylesheet:', error.message);
+  }
+}
+asyncloadAndUseStyle();
+ ```
 
 #  For Nuxt Projects
 ```sh
