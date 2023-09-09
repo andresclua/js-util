@@ -131,6 +131,7 @@ import {nameoffunction} from  @andresclua/jsutil
 ```
 ### IsBrowser
 ```
+import {isBrowser} from  @andresclua/jsutil
 console.log(isBrowser('chrome')) // will return a boolean
 ```
 Available options:
@@ -142,6 +143,7 @@ Available options:
 
 ### isDevice
 ```
+import {isDevice} from  @andresclua/jsutil
 console.log(isDevice('touch')) // will return a boolean
 ```
 Available options:
