@@ -6,6 +6,7 @@ While the examples provided here utilize HTML elements by their IDs, please note
 
 Cheers to simpler web development with process with Js Utils!
 
+---
 
 ## How does it work?
 ```sh
@@ -124,6 +125,7 @@ console.log('detectdevice is not visible on load.');
 }
 ```
 
+---
 
 ## Aditional Functions
 ```
@@ -217,7 +219,7 @@ async function asyncloadAndUseStyle() {
 }
 asyncloadAndUseStyle();
  ```
-
+---
 #  For Nuxt Projects
 ```sh
 npm install @andresclua/jsutil
@@ -248,6 +250,7 @@ export default {
 }
 </script>
 ```
+---
 ![awesome](https://media.giphy.com/media/LeikbswJKXOMM/giphy.gif)
 
 [Github Profile](https://github.com/andresclua/)
