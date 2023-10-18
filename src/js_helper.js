@@ -1,6 +1,6 @@
 import { tyt,loadAndUseScript,loadAndUseStyle } from "./promises/index";
 import { isBrowser,isDevice } from "./utilities/index";
-class JSUTIL{
+export default  class JSUTIL{
     
     _getElements(id) {
         if (typeof id == "object") {
@@ -289,7 +289,7 @@ class JSUTIL{
 }
  
 
-export default JSUTIL;
+
 export {tyt, loadAndUseScript,loadAndUseStyle }; 
 export {isBrowser,isDevice};
 
