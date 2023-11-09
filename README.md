@@ -95,7 +95,7 @@ console.log(JSUTIL.stringToBoolean('0'));     // Output: false
 ### setAttr & getAttr
 ```sh
 const name = JSUTIL.getAttr(myElement, 'data-name');
-const age = JSUTIL.setAttr(myElement, 'data-age');
+const age = JSUTIL.setAttr(myElement, 'data-age', 20);
 ```
 
 ### visibleOnLoad
