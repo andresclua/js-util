@@ -1,6 +1,6 @@
 {
   "name": "@andresclua/jsutil",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "description": "DOM",
   "scripts": {
     "webpack": "webpack --watch --mode=production"
