@@ -220,36 +220,35 @@ async function asyncloadAndUseStyle() {
 asyncloadAndUseStyle();
  ```
 ---
-#  For Nuxt Projects
+#  For Nuxt 3 Projects
 ```sh
 npm install @andresclua/jsutil
 ```
+Inside plugin folder
 ```sh
-  plugins: [
-    { src: "~/plugins/jsutil.js", ssr: false },
-  ],
+  import JSUTIL,{isBrowser,isDevice}  from '@andresclua/jsutil';
+
+export default defineNuxtPlugin(async(nuxtApp) => {
+  nuxtApp.provide('JSUTIL', new JSUTIL())
+  nuxtApp.provide('isBrowser', isBrowser)
+  nuxtApp.provide('isDevice', isDevice)
+})
 ```
 ```sh
-import JSUTIL from '@andresclua/jsutil';
-export default ({ app },inject) => {
-    inject('JSUTIL', () => new JSUTIL() );
-};
-```
-```sh
-<template>
-    <p ref="test">this is a test</p>
-</template>
-<script>
-export default {
-    mounted() {
-        if (process.client) {
-                this.$JSUTIL().addClass(this.$refs.test,'foo');
-                console.log( 'is chrome?',this.$JSUTIL().getBrowser('chrome') );
-        }
-    },
-}
+<script lang="ts" setup>
+  var paragraph = ref(null)
+  const { $JSUTIL,$isBrowser,$isDevice,$Collapsify } = useNuxtApp(); 
+  onMounted(()=>{
+    if(process.client){
+      console.log('collapsify : ', $Collapsify)
+      $JSUTIL.addClass(paragraph.value,'foo')
+      console.log('isBrowser : ',$isBrowser('safari'))
+      console.log('isDevice : ',$isDevice('touch'))
+    }
+  })
 </script>
 ```
+
 ---
 ![awesome](https://media.giphy.com/media/LeikbswJKXOMM/giphy.gif)
 

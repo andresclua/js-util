@@ -1,1 +1,2 @@
-module.exports = require('./src/js_helper');
+import Jsutil from './src/js_helper';
+export Jsutil;

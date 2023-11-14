@@ -1,10 +1,12 @@
 {
   "name": "@andresclua/jsutil",
-  "version": "3.0.14",
+  "version": "3.0.15",
   "description": "DOM",
-  "main": "",
   "scripts": {
     "webpack": "webpack --watch --mode=production"
+  },
+  "exports":{
+    ".":"./src/js_helper.js"
   },
   "repository": {
     "type": "git",
