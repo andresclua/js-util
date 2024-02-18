@@ -1,13 +1,4 @@
-// BROWSER DETECTION
-
-/**
- * Determines if the current web browser matches the specified browser type.
- *
- * @param {string} browser - The browser type to check (e.g., 'chrome', 'safari', 'firefox', 'ie', 'edge').
- * @returns {boolean|null} Returns `true` if the current browser matches the specified type,
- *                        `false` if it does not match, or `null` if the provided browser type is unsupported.
- */
-function isBrowser(browser) {
+function u_browser(browser) {
     switch (browser) {
         // CHROME 1+
         case 'chrome':
@@ -29,14 +20,7 @@ function isBrowser(browser) {
     }
 }
 
-/**
- * Determine if the current device matches the specified system type.
- *
- * @param {string} system - The system type to check (e.g., 'touch', 'android', 'ios').
- * @returns {boolean} Returns `true` if the current device matches the specified system type;
- *                    otherwise, returns `false`.
- */
-function isDevice(system) {
+function u_system(system) {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
     switch (system) {
         case 'touch':
@@ -45,9 +29,11 @@ function isDevice(system) {
             return /android/i.test(userAgent);
         case 'ios':
             return typeof navigator.standalone === 'boolean';
+        case 'windows':
+            return /windows/i.test(userAgent); // This line checks if the userAgent contains 'Windows'
         default:
-            return true;
+            return false; // Changed to false to make the default case more logical
     }
   }
+export {u_browser,u_system}
 
-  export {isBrowser,isDevice};

@@ -1,143 +1,38 @@
-import JSUTIL from './js_helper';
-import {tyt,loadScript,loadAndUseStyle} from './js_helper.js';
-import {isBrowser,isDevice} from './js_helper';
+import {u_hide,u_show,u_style,u_addClass,u_removeClass,u_toggleClass} from './lib/ui.js';
+import {u_matches} from './lib/matches.js';
+import { u_getAttr, u_setAttr } from './lib/attribute.js';
+import { u_stringToBoolean,u_stringToNumber } from './lib/validate.js';
+import { u_browser,u_system } from './lib/system.js';
+import { u_take_your_time } from './js_util.js';
 
-// function isBrowser(system) {
-//     console.log('va')
-//     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-//     switch (system) {
-//         case 'touch':
-//             return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
-//         case 'android':
-//             return /android/i.test(userAgent);
-//         case 'ios':
-//             return typeof navigator.standalone === 'boolean';
-//         default:
-//             return null;
-//     }
-//   }
+// basic ui
+u_hide('.js--u_hide');
+u_show('.js--u_show');
+u_style('.js--u_style', [{color: '#00ff00'}]);
+u_addClass('.js--u_addClass', 'hola mundo');
+u_removeClass('.js--u_removeClass', 'hola mundo');
+u_toggleClass('.js--u_toggleClass', 'f--color-a');
 
+// matches
+console.log(u_matches('.js--u_matches', 'test  '));
 
-class Page{
-    constructor(){
-        this.init()
-    }
-    async init(){ 
+// attribute set & get
+console.log(u_getAttr('.js--u_get', 'data-name'));
+u_setAttr('.js--u_set', 'data-name', 'test')
 
-        await tyt(200)
+// 
+const numberFromString = u_stringToNumber("123.45");
+console.log(numberFromString); // Outputs: 123.45
 
-        await loadAndUseStyle({
-            href: 'https://teamthunderfoot.com/wp-content/themes/thunderfoot-wp-theme/dist/css/tf_common_styles.083.css',
-            media: 'screen'
-        })
+const booleanFromStringTrue = u_stringToBoolean("true");
+console.log(booleanFromStringTrue); // Outputs: true
 
-        
-        var jsutil = new JSUTIL()
-        /*
-            Add Class
-        */
-        jsutil.addClass(document.getElementById('add-class-trigger'),'add-class')
+console.log('is chrome',u_browser('chrome'));
 
-        /*
-            Remove Class
-        */
-        jsutil.removeClass(document.getElementById('remove-class-trigger'),'remove-class');
-
-        /*
-            Toggle Class
-        */
-        document.getElementById('toggle-class-trigger').addEventListener('click', ()=>{
-            jsutil.toggleClass(document.getElementById('toggle-class-trigger'),'toggle-class');
-        });
-
-        /*
-            add Style
-        */
-        jsutil.addStyle(document.getElementById('add-style-trigger'),'background-color','orange');
-        jsutil.addStyle(document.getElementById('add-style-trigger'),'padding','10px');
-
-        /*
-            dispay none
-        */
-        document.getElementById('hide-trigger').addEventListener('click', (e)=>{
-            e.preventDefault()
-            jsutil.hide(document.getElementById('hide-trigger'));
-        });
-
-        /*
-            display block
-        */
-        document.getElementById('show-trigger').addEventListener('click', (e)=>{
-            e.preventDefault()
-            jsutil.show(document.getElementById('content-to-show'));
-        });
-
-        /*
-            Matches by class
-        */
-        if (jsutil.matches(document.querySelector('.test'), ['asd','toto'])) {
-          console.log("element has class highlight");
-        } else{
-            console.log('jsutil.matches - .test div doesnt have class  "asd" or "toto"')
-        }
-
-        /*
-            Matches by custom attribute
-        */
-        if (jsutil.matches(document.getElementById("customElement"), ["custom-value", "other-value"], 'data-custom-attribute')) {
-            console.log("Element matches the specified custom attribute values");
-          } else {
-            console.log("Element does not match the specified custom attribute values");
-        }
-
-        /*
-            Filter
-        */
-        document.getElementById('triggerfilter').addEventListener('input', (event)=> {
-            jsutil.filterHTML(document.getElementById('list'),'li',event.target.value);
-        });
+console.log('is chrome',u_system('ios'));
+(async () => {
+    const result = await u_take_your_time(1200);
+    console.log('done');
+})()
 
 
-        /*
-            isElementVisibleOnLoad v1
-        */
-        const isvisibleaddclassTrigger = jsutil.isElementVisibleOnLoad({ element: document.getElementById('add-class-trigger'), additionalPixels: 30 });;
-        if (isvisibleaddclassTrigger) {
-        console.log('element with ID add-class-trigger is  visible on load.');
-        } else {
-        console.log('element with ID add-class-trigger is not visible on load.');
-        }
-
-        /*
-            isElementVisibleOnLoad v2
-        */
-        const detectdevice = jsutil.isElementVisibleOnLoad({ element: document.getElementById('detectdevice'), additionalPixels: 120 });;
-        if (detectdevice) {
-            console.log('element with ID Detectdevice is  visible on load.');
-        } else {
-            console.log('element with ID Detectdevice is not visible on load.');
-        }
-
-        /*
-            isBrowser
-        */
-        var browsers = ['chrome','safari','firefox','ie','edge']
-        browsers.forEach(element => {
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(`is this browser ${element}? ${isBrowser(element)} `))
-            document.getElementById('browserList').appendChild(li);
-        });
-
-
-        var devices = ['touch','android','ios','laptop']
-        devices.forEach(element => {
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(`is this ${element}? ${isDevice(element)} `))
-            document.getElementById('detectdevice').appendChild(li);
-        });
-
-    }
-}
-export default Page;
-
-new Page()
