@@ -1,7 +1,7 @@
 {
   "name": "@andresclua/jsutil",
   "private": false,
-  "version": "4.0.01",
+  "version": "4.0.02",
   "type": "module",
   "main": "./dist/js_util.umd.js",
   "module": "./dist/js_util.es.js",
