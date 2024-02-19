@@ -20,8 +20,8 @@ Documentation Here - [link](https://jsutildocs.netlify.app/introduction/)
  - Provide ES6 & UMD output
 
 ## Other packages that I work
- - [attachflow](https://www.npmjs.com/package/attachflow) - dynamically load JavaScript files and CSS stylesheets into a webpage using the loadScript and loadStyle utility functions
- - [Debounce Throttle](https://www.npmjs.com/package/@andresclua/debounce-throttle - JavaScript utility library for rate-limiting function executions. It offers both debounce and throttle functions that are essential for optimizing performance for events that fire frequently, such as window resizing, scrolling, or keypresses in web applications.  
+ - [attachflow](https://www.npmjs.com/package/attachflow) - dynamically load JavaScript files and CSS stylesheets into a webpage using the loadScript and loadStyle utility functions.
+ - [Debounce Throttle](https://www.npmjs.com/package/@andresclua/debounce-throttle) - JavaScript utility library for rate-limiting function executions. It offers both debounce and throttle functions that are essential for optimizing performance for events that fire frequently, such as window resizing, scrolling, or keypresses in web applications.  
 
 
 ---
