@@ -9,6 +9,7 @@ import { u_take_your_time } from './js_util.js';
 u_hide('.js--u_hide');
 u_show('.js--u_show');
 u_style('.js--u_style', [{color: '#00ff00'}]);
+u_style('body', [{ pointerEvents: 'none' }, { backgroundColor: 'red' }])
 u_addClass('.js--u_addClass', 'hola mundo');
 u_removeClass('.js--u_removeClass', 'hola mundo');
 u_toggleClass('.js--u_toggleClass', 'f--color-a');
