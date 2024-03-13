@@ -30,7 +30,9 @@ console.log(booleanFromStringTrue); // Outputs: true
 
 console.log('is chrome',u_browser('chrome'));
 
-console.log('is chrome',u_system('ios'));
+console.log('is IOS',u_system('ios'));
+console.log('is mac',u_system('mac'));
+
 (async () => {
     const result = await u_take_your_time(1200);
     console.log('done');

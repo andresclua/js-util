@@ -31,6 +31,8 @@ function u_system(system) {
             return typeof navigator.standalone === 'boolean';
         case 'windows':
             return /windows/i.test(userAgent); // This line checks if the userAgent contains 'Windows'
+        case 'mac': // Added case for 'mac'
+            return /mac/i.test(userAgent); // This line checks if the userAgent contains 'Mac'
         default:
             return false; // Changed to false to make the default case more logical
     }
