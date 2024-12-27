@@ -10,7 +10,7 @@ This package is inspired by practical insights gathered from numerous web develo
 ## Documentation
 
 Documentation Here - [link](https://jsutildocs.netlify.app/introduction/)
-[![awesome](https://jsutildocs.netlify.app/default-og-image.jpg)](https://jsutildocs.netlify.app/introduction/)
+
 
 
 ## What to expect from V3 to V4
