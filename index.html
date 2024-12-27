@@ -4,33 +4,123 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/style.scss">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Vite App</title>
+<link rel="stylesheet" href="https://unpkg.com/@terrahq/design-system@latest/dist/style.css">
+    
+<style>
+  .f--font-a{
+    font-size: 35px;
+  }
+  body{
+    overflow: scroll;;
+  }
+</style>
+<title>js Utils</title>
   </head>
   <body>
-
-    <h2 class="js--u_hide">hide this element</h2>
-    <h2 class="js--u_show">Show this element</h2>
-    <h2 class="js--u_style">Style this element</h2>
-    <h2 class="js--u_addClass">Add Class</h2>
-    <h2 class="js--u_removeClass hola mundo">Remove Class</h2>
-    <h2 class="js--u_toggleClass">Toggle Class</h2>
-    <hr>
     
-    <h2 class="js--u_get" data-name="andres">Get Attr</h2>
-    <h2 class="js--u_set">Set Attr</h2>
+    <div class="f--container">
+      <div class="f--row">
+        <div class="f--col-12">
+          <h2 class="f--font-a f--mb-2 f--mt-4">Basic UI</h2>
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Hide element</h4>
+            <p class="js--u_hide">hide this element</p>
+          </div>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Show this element</h4>
+            <h2 class="js--show">show this element</h2>
+          </div>
 
 
-    <p class="element">First Element</p>
-    <p class="element">Second Element</p>
-    <p class="element">Third Element</p>
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>style this element</h4>
+            <h2 class="js--u_style f--mb-2">style this element</h2>
+            <div class="js--u_style-card f--p-2 f--mb-2">
+              <p>this is a test!</p>
+            </div>
+          </div>
 
-    <p class="invisble">Invisible</p>
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Add Class</h4>
+            <h2 class="js--u_addClass">Add Class</h2>
+          </div>
 
-    <p class="miClase"> aca!</p>
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Remove Class</h4>
+            <h2 class="js--u_removeClass remove-class">Remove Class</h2>
+          </div>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Toggle Class</h4>
+            <h2 class="js--u_toggleClass">Toggle Class</h2>
+          </div>
+
+
+        
+           <h2 class="f--font-a f--mb-2">Check items</h2>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Matches</h4>
+            <h2 class="js--u_matches-class test">matches class</h2>
+            <h2 class="js--u_matches-atrribute" custom-attribute-match="developer">matches</h2>
+          </div>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Get Attribute</h4>
+            <h2 class="js--u_get" data-name="frontend">Get Attr from this element : <span class="getdisplay"></span></h2>
+          </div>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Set Attribute</h4>
+            <h2 class="js--u_set" data-set="">Get Attr from this element : <span class="setdisplay">coco</span></h2>
+          </div>
+
+          <h2 class="f--font-a f--mb-2">Maths & conversion</h2>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Number from String</h4>
+            <h2>Convert string to number  <span class="stringtoNumber">1234</span></h2>
+          </div>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>Boolean from String</h4>
+            <h2>Convert string to boolean  <span class="stringtoBoolean">false</span></h2>
+          </div>
+
+          <h2 class="f--font-a f--mb-2">Device & system</h2>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>check for specific browser </h4>
+            <h2>is Chrome? <span class="js--u_browser"></span></h2>
+          </div>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>get browser</h4>
+            <h2>you are using: <span class="js--u_get_browser"></span></h2>
+          </div>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>is touch </h4>
+            <h2>boolean if this device is touch: <span class="js--u_is_touch"></span></h2>
+          </div>
+
+          <div class="f--background-c f--p-2 f--mb-2">
+            <h4>what os system ?</h4>
+            <h2>you are Os system: <span class="js--u_system"></span></h2>
+          </div>
+          
+
+        </div>
+      </div>
+    </div>
+    
+
+
+
 
     <script type="module" src="./src/index.js"></script>
   </body>

@@ -20,22 +20,56 @@ function u_browser(browser) {
     }
 }
 
-function u_system(system) {
-    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    switch (system) {
-        case 'touch':
-            return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
-        case 'android':
-            return /android/i.test(userAgent);
-        case 'ios':
-            return typeof navigator.standalone === 'boolean';
-        case 'windows':
-            return /windows/i.test(userAgent); // This line checks if the userAgent contains 'Windows'
-        case 'mac': // Added case for 'mac'
-            return /mac/i.test(userAgent); // This line checks if the userAgent contains 'Mac'
-        default:
-            return false; // Changed to false to make the default case more logical
+function u_get_browser() {
+    const userAgent = navigator.userAgent;
+
+    if (userAgent.indexOf("Chrome") !== -1 && !userAgent.match(/edg/i) && userAgent.indexOf('CriOS') < 0) {
+        return 'chrome';
+    } else if (/^((?!chrome|android).)*safari/i.test(userAgent) && userAgent.indexOf('CriOS') < 0) {
+        return 'safari';
+    } else if (typeof InstallTrigger !== 'undefined') {
+        return 'firefox';
+    } else if (!!document.documentMode) {
+        return 'ie';
+    } else if (userAgent.match(/edg/i) || userAgent.indexOf("Edge/") !== -1) {
+        return 'edge';
+    } else {
+        return null;
     }
-  }
-export {u_browser,u_system}
+}
+
+function u_is_touch() {
+    return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+}
+
+function u_get_system() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const systems = [];
+
+    if (/android/i.test(userAgent)) {
+        systems.push('android');
+    }
+    if (/windows/i.test(userAgent)) {
+        systems.push('windows');
+    }
+
+    if (/mac/i.test(userAgent)) {
+        // Primero se verifica si es un dispositivo Apple
+        systems.push('apple'); 
+        
+        // Verificamos si es un iPhone, iPad, o un Mac
+        if (/iphone|ipod/i.test(userAgent)) {
+            systems.push('iphone'); // Es un iPhone o iPod
+        } else if (/ipad/i.test(userAgent)) {
+            systems.push('ipad'); // Es un iPad
+        } else {
+            systems.push('mac'); // Es un Mac (MacOS)
+        }
+    }
+
+    return systems.length > 0 ? systems : ['unknown']; // Devuelve 'unknown' si no se detecta ningún sistema
+}
+
+
+export {u_browser,u_get_browser, u_is_touch,u_get_system}
 

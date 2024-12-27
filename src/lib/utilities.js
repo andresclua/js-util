@@ -7,4 +7,4 @@ function getElements(selectorOrElement) {
         return document.querySelectorAll(selectorOrElement);
     }
 }
-export {getElements}
+export { getElements };
